@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Climber</string>
+    <string name="timesettedbutton_name">开始专注</string>
+    <string name="settingofmenu">设置</string>
+</resources>
