@@ -27,14 +27,6 @@
             app:layout_constraintTop_toTopOf = "parent" android:layout_marginStart = "32dp"
             app:layout_constraintStart_toStartOf = "parent"
             android:textColorHint = "@android:color/background_light" />
-
-    <Button
-            android:text = "@string/message_end"
-            android:layout_width = "190dp"
-            android:layout_height = "wrap_content"
-            android:id = "@+id/button2" android:layout_marginTop = "180dp"
-            app:layout_constraintStart_toStartOf = "parent"
-            android:layout_marginStart = "32dp" app:layout_constraintTop_toTopOf = "parent" />
     <TextView
             android:text = "@string/message_timeOut"
             android:layout_width = "111dp"
@@ -56,4 +48,5 @@
             app:layout_constraintBottom_toTopOf = "@+id/timeOut"
             app:layout_constraintStart_toStartOf = "@+id/timeOut"
     />
+
 </android.support.constraint.ConstraintLayout>

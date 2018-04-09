@@ -1,4 +1,4 @@
-#Sun Apr 08 18:57:20 CST 2018
+#Mon Apr 09 20:06:58 CST 2018
 base.0=F\:\\Work\\myWork\\Application\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_2
 renamed.0=classes.dex
 file.0=F\:\\Work\\myWork\\Application\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_2\\classes.dex

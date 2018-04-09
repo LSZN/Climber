@@ -108,6 +108,10 @@
         "source": "C:\\Users\\11210\\.android\\build-cache\\dd86f2c9e013a6dab10203fcb876616e65d74aed\\output\\res\\drawable\\abc_vector_test.xml"
     },
     {
+        "merged": "F:\\Work\\myWork\\Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mybackground.jpg",
+        "source": "F:\\Work\\myWork\\Application\\app\\src\\main\\res\\drawable\\mybackground.jpg"
+    },
+    {
         "merged": "F:\\Work\\myWork\\Application\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
         "source": "C:\\Users\\11210\\.android\\build-cache\\dd86f2c9e013a6dab10203fcb876616e65d74aed\\output\\res\\drawable\\abc_ic_menu_overflow_material.xml"
     },

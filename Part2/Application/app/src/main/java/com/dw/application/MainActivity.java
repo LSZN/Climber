@@ -1,15 +1,14 @@
 package com.dw.application;
 
+import android.app.Service;
 import android.os.*;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.StringBufferInputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //已用时间输出
-        CountDownTimer timer = new CountDownTimer((hours * 60 + minute) * 60 * 1000, 1000) {
+        new CountDownTimer((hours * 60 + minute) * 60 * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 long sUntilFinished = millisUntilFinished / 1000;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 mUntilFinished = mUntilFinished % 60;
 
                 String[] timeToOut = TimePut.timeOutPut(hUntilFinished, mUntilFinished, sUntilFinished);
-                tv.setText(timeToOut[0] + ":" + timeToOut[1] + ":" + timeToOut[2]);
+                tv.setText(String.format(getResources().getString(R.string.time), timeToOut[0], timeToOut[1], timeToOut[2]));
             }
 
             @Override
@@ -51,33 +50,44 @@ public class MainActivity extends AppCompatActivity {
         final Chronometer usedChronometer = findViewById(R.id.lastTime);
         usedChronometer.setBase(SystemClock.elapsedRealtime() - 1000);
         usedChronometer.start();
-        Toast.makeText(MainActivity.this, "坚持！", Toast.LENGTH_LONG).show();
-
+        Toast toast = Toast.makeText(MainActivity.this, "坚持！", Toast.LENGTH_LONG);
+    toast.show();
 
         //处理倒计时结束后Chronometer暂停。
         final Handler handler = new Handler() {
-
             @Override
             public void handleMessage(Message msg) {
-                super.handleMessage(msg);
                 switch (msg.what) {
                     case 1:
                         usedChronometer.stop();
+                        Looper.prepare();
+                        Toast.makeText(MainActivity.this, "成功！", Toast.LENGTH_LONG).show();
                         Log.e("a", "true");
+
+                        //处理震动
+                        Vibrator theVibrator = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            try {
+                                theVibrator.vibrate(VibrationEffect.createOneShot(1000, 1)); //等待指定时间后开始震动，震动时间,等待震动,震动的时间
+                            } catch (NullPointerException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        Looper.loop();
                         break;
                     case 2:
                         Log.e("abc", "pass");
                         break;
                 }
-            }
 
+            }
         };
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep((hours * 60 + minute) * 60 * 1000);
+                    Thread.sleep((hours * 10 + minute) * 60 * 1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -88,20 +98,5 @@ public class MainActivity extends AppCompatActivity {
         }).start();
 
 
-        Button bButton = findViewById(R.id.button2);
-        bButton.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View v) {
-                                           ((Chronometer) findViewById(R.id.lastTime)).stop();
-
-                                           Toast tot = Toast.makeText(
-                                                   MainActivity.this,
-                                                   "停止计时",
-                                                   Toast.LENGTH_LONG);
-                                           tot.show();
-                                       }
-                                   }
-        );
     }
-
 }
